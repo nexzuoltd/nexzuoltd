@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXZUO LTD – Mobile Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void:    #090b12;
+      --panel:   #111520;
+      --border:  #1e2535;
+      --neon:    #00f0ff;
+      --neon2:   #b84fff;
+      --gold:    #ffd760;
+      --text:    #d4daf0;
+      --muted:   #5a637a;
+      --radius:  14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--void);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── STARS BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.55) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 80%, rgba(255,255,255,.30) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,.50) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 50%, rgba(255,255,255,.40) 0%, transparent 100%),
+        radial-gradient(2px 2px at 45% 35%, rgba(0,240,255,.30) 0%, transparent 100%),
+        radial-gradient(2px 2px at 80% 10%, rgba(184,79,255,.25) 0%, transparent 100%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      height: 64px;
+      background: rgba(9,11,18,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900; font-size: 1.2rem;
+      letter-spacing: .08em; color: #fff;
+    }
+    .logo span { color: var(--neon); }
+    nav a {
+      color: var(--muted); text-decoration: none; font-size: .9rem;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--neon); }
+    .nav-links { display: flex; gap: 2rem; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 92vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 5vw 4rem;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(0,240,255,.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: .78rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--neon); margin-bottom: 1.2rem; font-weight: 600;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900; font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 1.1; color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    h1 .accent { color: var(--neon); }
+    h1 .accent2 { color: var(--neon2); }
+    .hero-sub {
+      max-width: 560px; color: var(--muted); font-size: 1.1rem;
+      margin-bottom: 2.8rem; line-height: 1.7;
+    }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem; border-radius: var(--radius);
+      font-weight: 600; font-size: .95rem; text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--neon), #0099cc);
+      color: #000; box-shadow: 0 0 24px rgba(0,240,255,.4);
+    }
+    .btn-primary:hover { box-shadow: 0 0 36px rgba(0,240,255,.6); }
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--neon); color: var(--neon); }
+
+    /* floating phones */
+    .phones {
+      display: flex; gap: 2rem; margin-top: 4rem;
+      justify-content: center; align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    .phone {
+      width: 140px; height: 280px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 0 1px var(--border);
+      animation: float 4s ease-in-out infinite;
+    }
+    .phone:nth-child(2) { height: 320px; animation-delay: -.8s; }
+    .phone:nth-child(3) { animation-delay: -1.6s; }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-14px); }
+    }
+    .phone-screen {
+      position: absolute; inset: 10px;
+      border-radius: 20px; overflow: hidden;
+      background: linear-gradient(160deg, #0d1b2e, #1a0a2e);
+    }
+    .phone-glow {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(0,240,255,.12), rgba(184,79,255,.12));
+    }
+    .phone-icon {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      font-size: 2.4rem;
+    }
+    .phone:nth-child(1) .phone-icon::after { content: '🕹️'; }
+    .phone:nth-child(2) .phone-icon::after { content: '🎮'; }
+    .phone:nth-child(3) .phone-icon::after { content: '🏆'; }
+
+    /* ── SECTIONS ── */
+    section { position: relative; z-index: 1; padding: 6rem 5vw; }
+    .section-label {
+      font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--neon2); margin-bottom: .8rem; font-weight: 600;
+    }
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700; color: #fff; margin-bottom: 1rem;
+    }
+    .section-intro { color: var(--muted); max-width: 540px; margin-bottom: 3rem; }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; max-width: 1000px; margin: 0 auto;
+    }
+    .about-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: border-color .25s;
+    }
+    .about-card:hover { border-color: var(--neon); }
+    .about-card h3 {
+      font-family: 'Orbitron', sans-serif; font-size: 1rem;
+      color: #fff; margin-bottom: .6rem;
+    }
+    .about-card p { color: var(--muted); font-size: .95rem; }
+    .card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+
+    /* GAMES */
+    .games-section { background: var(--panel); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .games-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+    }
+    .game-card {
+      background: var(--void); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.8rem 1.5rem;
+      text-align: center; transition: transform .2s, border-color .2s;
+    }
+    .game-card:hover { transform: translateY(-6px); border-color: var(--neon2); }
+    .game-card-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .game-card h3 {
+      font-family: 'Orbitron', sans-serif; font-size: .9rem;
+      color: #fff; margin-bottom: .5rem; letter-spacing: .04em;
+    }
+    .game-card p { color: var(--muted); font-size: .85rem; }
+    .badge {
+      display: inline-block; margin-top: .8rem;
+      padding: .2rem .7rem; border-radius: 20px; font-size: .72rem; font-weight: 600;
+      background: rgba(0,240,255,.12); color: var(--neon); border: 1px solid rgba(0,240,255,.3);
+    }
+
+    /* CONTACT */
+    .contact-box {
+      max-width: 540px; margin: 0 auto;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2.5rem;
+      text-align: center;
+    }
+    .contact-box p { color: var(--muted); margin-bottom: 1.5rem; }
+    .contact-email {
+      display: inline-flex; align-items: center; gap: .6rem;
+      color: var(--neon); font-weight: 600; font-size: 1.05rem;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .contact-email:hover { opacity: .75; }
+
+    /* FOOTER */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      font-size: .85rem; color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    footer a:hover { color: var(--neon); }
+
+    /* NEON DIVIDER */
+    .divider {
+      height: 1px; max-width: 1000px; margin: 0 auto;
+      background: linear-gradient(90deg, transparent, var(--neon), transparent);
+      opacity: .25;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .phones { gap: 1rem; }
+      .phone { width: 110px; height: 220px; }
+      .phone:nth-child(2) { height: 260px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .phone { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">NEX<span>ZUO</span> LTD</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#games">Games</a>
+    <a href="#contact">Contact</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">🎮 Mobile Game Studio</div>
+  <h1>Play the <span class="accent">Next</span><br>Level of <span class="accent2">Fun</span></h1>
+  <p class="hero-sub">NEXZUO LTD crafts addictive mobile games built for everyone. Pick up, play, and come back for more.</p>
+  <div class="btn-group">
+    <a href="https://play.google.com/store" class="btn btn-primary" target="_blank" rel="noopener">
+      ▶ &nbsp;Google Play
+    </a>
+    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+  </div>
+
+  <div class="phones">
+    <div class="phone"><div class="phone-screen"><div class="phone-glow"></div><div class="phone-icon"></div></div></div>
+    <div class="phone"><div class="phone-screen"><div class="phone-glow"></div><div class="phone-icon"></div></div></div>
+    <div class="phone"><div class="phone-screen"><div class="phone-glow"></div><div class="phone-icon"></div></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div style="text-align:center; margin-bottom:3rem;">
+    <div class="section-label">Who we are</div>
+    <h2>Built for Mobile Gamers</h2>
+    <p class="section-intro" style="margin:0 auto;">We are NEXZUO LTD — a mobile-first game development studio publishing fun, polished games on Google Play.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="card-icon">🚀</div>
+      <h3>Fast & Smooth</h3>
+      <p>Every game we ship is optimised for performance on a wide range of Android devices, so the fun never lags.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-icon">🔒</div>
+      <h3>Privacy First</h3>
+      <p>We respect your data. Our apps follow Google Play's policies and only collect what is strictly necessary.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-icon">🌍</div>
+      <h3>Global Reach</h3>
+      <p>Our games are designed for a worldwide audience — simple controls, universal themes, multiple languages.</p>
+    </div>
+    <div class="about-card">
+      <div class="card-icon">🎯</div>
+      <h3>Player-Centred</h3>
+      <p>Great gameplay comes first. We iterate based on real feedback so every update makes the experience better.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GAMES -->
+<section id="games" class="games-section">
+  <div style="text-align:center; margin-bottom:3rem;">
+    <div class="section-label">Our titles</div>
+    <h2>Games We Publish</h2>
+    <p class="section-intro" style="margin:0 auto;">From casual puzzles to fast-paced action — our catalogue is growing. Watch this space.</p>
+  </div>
+  <div class="games-grid">
+    <div class="game-card">
+      <div class="game-card-icon">🧩</div>
+      <h3>Puzzle Quest</h3>
+      <p>Brain-teasing levels that get harder as you go. Easy to learn, tough to master.</p>
+      <span class="badge">Casual</span>
+    </div>
+    <div class="game-card">
+      <div class="game-card-icon">⚡</div>
+      <h3>Speed Dash</h3>
+      <p>Tap-based reflex game where every millisecond counts. Beat your own high score.</p>
+      <span class="badge">Action</span>
+    </div>
+    <div class="game-card">
+      <div class="game-card-icon">🌌</div>
+      <h3>Void Runner</h3>
+      <p>Dodge obstacles across infinite neon corridors. How far can you go?</p>
+      <span class="badge">Endless</span>
+    </div>
+    <div class="game-card">
+      <div class="game-card-icon">🏰</div>
+      <h3>Castle Keep</h3>
+      <p>Defend your kingdom in this strategic tower-defence adventure.</p>
+      <span class="badge">Strategy</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <div class="section-label" style="text-align:center;">Get in touch</div>
+    <h2 style="text-align:center; font-size:1.6rem;">Say Hello</h2>
+    <p>Questions about our games, partnerships, or press enquiries? Drop us an email and we'll get back to you.</p>
+    <a href="mailto:nexzuoltd@gmail.com" class="contact-email">
+      ✉ &nbsp;nexzuoltd@gmail.com
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo" style="font-size:.95rem;">NEX<span style="color:var(--neon)">ZUO</span> LTD</div>
+  <div>© 2024 NEXZUO LTD. All rights reserved.</div>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="mailto:nexzuoltd@gmail.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
