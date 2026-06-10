@@ -1,0 +1,25 @@
+# app-ads.txt for Green Stream Limited
+# Website: https://yourdomain.com
+# Contact: greenstream204@gmail.com
+#
+# FORMAT: <ad network domain>, <publisher ID>, <relationship type>, <certification authority ID>
+#
+# ── Google AdMob / Ad Manager ──
+# Replace ca-app-pub-XXXXXXXXXXXXXXXX with your actual AdMob Publisher ID
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+
+# ── Unity Ads ──
+# Uncomment and replace with your Unity Publisher ID if you use Unity Ads
+# unity.com, XXXXXXX, DIRECT
+
+# ── Meta Audience Network ──
+# Uncomment and replace with your Meta Publisher ID if applicable
+# facebook.com, XXXXXXXXXXXXXXXX, DIRECT
+
+# ── ironSource / Supersonic ──
+# Uncomment if applicable
+# ironsrc.com, XXXXXXX, DIRECT
+
+# ── AppLovin ──
+# Uncomment if applicable
+# applovin.com, XXXXXXX, DIRECT
